@@ -1,0 +1,54 @@
+\documentclass[11pt]{article}
+
+\usepackage[pdftex]{graphicx}
+
+% header
+\makeatletter
+\def\@maketitle{%
+  \noindent
+  \begin{minipage}{2in}
+  \@author
+  \end{minipage}
+  \hfill
+  \begin{minipage}{1.2in}
+  \textbf{\@title}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{1.2in}
+  \@date
+  \end{minipage}
+  \par
+  \vskip 1.5em}
+\makeatother
+
+% Naloga
+\title{Naloga 3}
+% Ime Priimek (vpisna)
+\author{Yannick Kuhar (63160187)}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Uvod}
+Cilj naloge je bil, da ustvarimo čim bolj natančni model za napovedovanje prihoda LPP mestnih avtobusov. To sem dosegel z obdelavo vhodnih podatkov, ki bo opisana v sledečih odstavkih. Nad obdelanimi sem nato sestavil napovedni model s pomočjo linearne regresije, ki so jo ponudili izvajalci predmeta.
+
+\section{Ocenjevanje tocnosti}
+Točnost sem ocenjeval z lastno implementacijo MSE(mean square error), ki mi je za primer \textbf{LinearnaRegresija}(izvedena nad razlikam v minutah) vrnila: MSE(LinearnaRegresija) = 4.386 \\
+Torej v povprečju se zmoti za 4 minute in 23 sekund, kar je še vseeno, po mojih laičnih opažanjih bolje kot trenutni LPP-jev sistem.
+
+\section{Napovedni modeli}
+\begin{description}
+\item[LinearnaRegresija]
+Iz danih podatkov sem sestavil točko oblike [idLinije, leto, mesec, dan, indexDneva, aliJeVikend, ura, minuta, sekunda], za obdelavo sem uporabil knjižnico datetime, iz katere sem dobil atribut idxDneva(je na intervalu [0, 6]) in nato določil ali je vikend ali ne. Knjižnico sem uporabil tudi za izvedbo aritmetičnih operacij nad datetime objekti. 
+\end{description}
+
+\section{Rezultati}
+\begin{tabular}{ c c c }
+ Ime & Napaka \\ 
+ \textbf{LinearnaRegresija*} & 539.21270 &
+\end{tabular}
+
+\subsection{Opis rezultata}Iz rezultata strežnika vidimo, da model ni natančen. Domnevam, da zaradi slabe izbire atributov(posamezni atributi npr. idLinije doprinese premalo) oz. premajhnega števila atributov, želel sem dodati še podatke o vremenu(temperatura, vlaga, količina dežja/snega) in geografsko razdaljo med začetno in končno postajo vendar zaradi časovne stiske nisem utegnil. Iz istega razloga sem izdelal le en model.
+\end{document}

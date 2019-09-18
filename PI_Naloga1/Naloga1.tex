@@ -1,0 +1,68 @@
+
+\documentclass[11pt]{article}
+
+\usepackage[pdftex]{graphicx}
+
+% header
+\makeatletter
+\def\@maketitle{%
+  \noindent
+  \begin{minipage}{2in}
+  \@author
+  \end{minipage}
+  \hfill
+  \begin{minipage}{1.2in}
+  \textbf{\@title}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{1.2in}
+  \@date
+  \end{minipage}
+  \par
+  \vskip 1.5em}
+\makeatother
+
+% Naloga
+\title{Naloga 1}
+% Ime Priimek (vpisna)
+\author{Yannick Kuhar (63160187)}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+% \section{Uvod.}
+% Cilj naloge Glasovanje za Pesem Evrovizije je bil narediti uvod v podatkovno rudarjenje.  % To smo dosegli s programiranjem osnovne metode Hierarchical clustering v programskem %jeziku Python. Cilj je bil tudi spoznati osnove  Pythona katerega še nisem uporabljal.
+
+\section{Podatki.}
+Dobili smo podatke o državah tekmovalkah na Evroviziji od leta 1998 do leta 2009 in sicer 291 primerov, vsakega s 63 atributi. V nalogi je bilo bistveno analizirati glasovanja med državami, kar pomeni, da je bilo nekaj nezanimivih atributov kot so ime avtorja, naslov pesmi, jezik petja in nato še nekaj podatkov o avtorju in državi gostiteljici - bolj natančno atributi od 3. do 16. stolpca.
+
+\subsection{Interpretacija in čiščenje podatkov.}
+Ugotoviti smo morali pristranskost glasovanja držav, zato sem seštel vse glasove skozi leta in sestavil slovar oblike \{('država'): ['1.0', '2.0', ... '0.0']\} in ga nato transponiral. Manjša težava so bili le pomanjkljivi podatki zaradi domnevno nesodelovanja. Manjkajoča polja sem nadomestil z '0.0', saj skoraj ne vpliva na končen rezutat.
+
+\section{Implementacija algoritma.}
+Skupine sem združeval na podlagi Evklidske razdalje, skupke skupin pa po razdalji med povprečjem vseh primerov (angl. avg. linkage), ker sem domneval, da je najenostavnejša za implementirati v Pythonu.
+
+\section{Rezultati.}
+
+Zaradi velikosti dendrograma sem ga vključil v datoteko Drevo.txt.
+
+\subsection{Skupine.}
+\textbf{Skupina 01:} Croatia, Slovenia, Bosnia and Herzegovina, Macedonia, Montenegro\\
+\textbf{Skupina 02:} Greece, Russia, Poland, Andorra, Portugal, Armenia, Belarus, Hungary, Czech Republic, Moldova, Serbia, Monaco, Azerbaijan, San Marino, Slovakia, Romania, Albania, Bulgaria, Spain, Cyprus, Israel   
+\textbf{Skupina 03:} Estonia, Latvia, Lithuania, Ireland, Malta, Iceland, Norway, Denmark, Finland \\
+\textbf{Skupina 04:} France, Germany, Belgium, Netherlands
+
+\begin{tabular}{ c c c }
+ Skupina & Preferirana država & Nepreferirana država \\ 
+ \textbf{Skupina 01:} & Czech Republic & Azerbaijan	 \\  
+ \textbf{Skupina 02:} & Bolgaria & Bosnia and Herzegovina\\
+ \textbf{Skupina 03:} & Cyprus & Croatia \\
+ \textbf{Skupina 04:} & Hungary & Albania   
+\end{tabular}
+
+\subsection{Razlaga.}
+Skupine sem izbral na podlagi dendrograma, kot je profesor povedal na predavanjih sem uporabil navidezno črto, ki je razdelila dendrogram na 5 skupin. Preferirane države sem izbral po motodi prefinnepref(hc).
+
+\end{document}

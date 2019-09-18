@@ -1,0 +1,87 @@
+\documentclass[11pt]{article}
+
+\usepackage[utf8]{inputenc}
+
+% header
+\makeatletter
+\def\@maketitle{%
+  \noindent
+  \begin{minipage}{2in}
+  \@author
+  \end{minipage}
+  \hfill
+  \begin{minipage}{1.2in}
+  \textbf{\@title}
+  \end{minipage}
+  \hfill
+  \begin{minipage}{1.2in}
+  \@date
+  \end{minipage}
+  \par
+  \vskip 1.5em}
+\makeatother
+
+% Naloga
+\title{Naloga 2}
+% Ime Priimek (vpisna)
+\author{Yannick Kuhar (63160187)}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Izbrani jeziki.}
+
+L = jezik je v Latinici \\
+C = jezik je v Cirilici \\
+D = drugo
+
+\begin{center}
+\begin{tabular}{1111111}
+ \textbf{Slovanski jeziki:}& Slv(L) & Slo(L) & Rus(C) & Blg(C) & Czc(L) & \\
+ \textbf{Germanski jeziki:} & Eng(L) & Ger(L) & Swd(L) & Fin(L) & Ice(L) & \\
+ \textbf{Romanski jeziki:}& Fra(L) & Esp(L) & Por(L) & Ita(L) & \\
+ \textbf{Ostalo:} & Swa(L) & Gre(D) & Trk(L) & Kkn(D) & Chn(D) & Jpn(D) & \\
+\end{tabular}
+\end{center}
+
+\subsection{Predobdelava datotek.}
+Sprva smo sestavili slovar, oblike \{'država': besedilo\}, katerega smo na predavanjih imenovali corpus.
+Nato smo iz besedila sestavili vse možne trojice znakov besedila in izračunali njihovo frekvenco. Tako smo dobili točke v večdimenzionalnem prostoru, oblike \{'država': tocka(vektor frekvenc)\}.
+
+\section{Rezultati razvrščanja.}
+V tem razdelku si bomo pomagali s tremi priloženimi datotekami (histogram.txt, minSihueta.txt in maxSihueta.txt), v katerih se nahajajo rezultati. Podobnosti sihuet se nahajajo na intervalu [0.21, 0.4], kar kaže, da imajo jeiki skupnega prednika. Na podoben, čeprav manj učinkovit način, se naredijo skupine.
+
+\section{Napovedovanje jezika.}
+Uporabimo podatke, ki jih že imamo, torej slovar točk. Besedilo predelamo na isti način kot vhodne podatke in dobimo točko, nato iteriramo čez slovar točk in v vsaki iteraciji izračunamo kosinusno razdaljo med točkama. Jezik določimo na podlagi maksimalne kosinusne razdalje.
+
+\subsection{Tabela.}
+\begin{left}
+\begin{tabular}{1111111}
+	Danes je lep dan, na nebu ni bilo nobenega oblaka. & SLOVAK & Napačno & \\
+	Today is a good day, there are no clouds in the sky. & SLV & Napačno &\\
+	Heute ist ein guter Tag es gibt keine Wolken an dem Himmel.& GER & Pravilno & \\
+	Dnes je dobrý den, na obloze nejsou žádné mraky. & ITN & Napačno & \\
+	Aujourd'hui est un bon jour, il n'y a pas de nuages ​​dans le ciel. & FIN & Napačno &
+\end{tabular}
+\end{left}
+
+Glede na rezultate metoda ni natančna.
+
+\section{Bonus naloga: Članki.}
+V tem razdelku bomo primerjali rezultate med naborom prevodov Deklaracije o človekovih pravicah (rezultati v histogram.txt) in naborom 20-ih člankov iz interneta (histogram\_clankov.txt). Glavna razlika med histogramoma je, da je histogram prevodov porazdeljen na intervalu [0.21, 0.4], medtem ko je histogram člankov porazdeljen na intervalu [-0.85, 0.35]. Sklepam, da je razlika med intervaloma zaradi drastične razlike v vsebini dokumentov.
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
